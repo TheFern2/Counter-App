@@ -34,6 +34,14 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleDecrement = counter => {
+    const counters = [...this.state.counters]; // Make a shallow copy of the array
+    const index = counters.indexOf(counter); // Get the index
+    counters[index] = { ...counter }; // Make a shallow copy of the item you want to mutate
+    counters[index].value--;
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -44,6 +52,7 @@ class App extends Component {
           <Counters
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
             counters={this.state.counters}
           />
